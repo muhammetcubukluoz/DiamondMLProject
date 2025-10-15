@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diamond Calculator Input</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fafafa;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+}
+
+.calculator {
+    background: white;
+    border-radius: 0px;
+    padding: 0 32px 32px 32px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 1500px;
+    margin: 50px 0px 0px 0px;
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+label {
+    color: rgb(107 114 128 / 1);
+    letter-spacing: .025em;
+    margin-top: 0.2rem;
+    text-transform: none;
+    display: block;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.btn {
+    flex: 1 0 30%;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #111;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #e5e7eb;
+    opacity: 0.95;
+}
+
+.btn.active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+    color: white;
+}
+
+.range-input {
+    width: 100%;
+    margin-top: 10px;
+}
+
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #28282b;
+    cursor: pointer;
+    border: 4px solid white;
+}
+
+.value-display {
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 9px;
+    transition: 0.2s;
+    font-size: 12px;
+    text-align: center;
+    margin: 4px auto;
+    width: 42px;
+    height: 11px;
+    background: #4f46e5;
+    color: white;
+}
+
+#submitBtn {
+    width: 100%;
+    height: 40px;
+    font-size: 19px;
+    margin-top: 32px;
+}
+
+#submitBtn:hover {
+    opacity: 0.8;
+}
+
+.calculator-output {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-left: none;
+    border-radius: 8px;
+    padding: 3px 20px 20px 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-family: 'Inter', sans-serif;
+    margin: 2px auto;
+}
+
+.calculator-output h2 {
+    text-align: left;
+    margin-bottom: 2px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #111;
+}
+
+.price-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    display: inline-block;
+}
+
+.price-card h3::after {
+    font-size: 14px;
+    margin-left: 4px;
+    color: #6b7280;
+}
+
+.price {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 1px 0;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #065f46;
+    background-color: #d1fae5;
+    border-radius: 12px;
+    padding: 6px 14px;
+    margin-top: 8px;
+    transition: 0.2s ease;
+}
+
+.tag:hover {
+    opacity: 0.8;
+}
+
+.header-box {
+  background-color: rgb(11, 115, 92);
+  color: white;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.header-box h1 {
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 1200px) {
+    .calculator {
+        width: 100%;
+        max-width: 1000px;
+    }
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+    .calculator {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 16px 24px 16px;
+        margin: 60px 0 0 0; /* leave space for fixed header */
+    }
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .btn {
+        flex: 1 0 48%;
+        padding: 12px 0;
+        font-size: 16px;
+    }
+    .price {
+        font-size: 36px;
+    }
+    .calculator-output {
+        max-width: 100%;
+    }
+    .value-display {
+        width: 48px;
+    }
+    #submitBtn {
+        height: 44px;
+        font-size: 18px;
+    }
+    .header-box {
+        height: 56px;
+    }
+    .header-box h1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        flex: 1 0 100%;
+    }
+    .price {
+        font-size: 32px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="header-box">
+  <h1>Machine Learning Diamonds Predict</h1>
+</div>
+
+
+<div class="container">
+
+    <div class="calculator">
+        <h2>Calculator Input</h2>
+        <div class="grid-container">
+            <div>
+                <label>Clarity</label>
+                <div class="btn-group">
+                    <button class="btn">I1</button>
+                    <button class="btn">SI2</button>
+                    <button class="btn">SI1</button>
+                    <button class="btn active">VS2</button>
+                    <button class="btn">VS1</button>
+                    <button class="btn">VVS2</button>
+                    <button class="btn">VVS1</button>
+                    <button class="btn">IF</button>
+                </div>
+            </div>
+
+            <div>
+                <label>Cut</label>
+                <div class="btn-group">
+                    <button class="btn">Fair</button>
+                    <button class="btn">Good</button>
+                    <button class="btn">Very Good</button>
+                    <button class="btn">Premium</button>
+                    <button class="btn active">Ideal</button>
+                </div>
+            </div>
+
+            <div>
+                <label>Color</label>
+                <div class="btn-group">
+                    <button class="btn">D</button>
+                    <button class="btn">E</button>
+                    <button class="btn">F</button>
+                    <button class="btn active">G</button>
+                    <button class="btn">H</button>
+                    <button class="btn">I</button>
+                    <button class="btn">J</button>
+                </div>
+            </div>
+
+            <div>
+                <label>Carat</label>
+                <div class="range-input">
+                    <div class="value-display" id="caratValue">0.86</div>
+                    <input type="range" min="0.2" max="5" step="0.01" value="0.86" id="caratRange">
+                </div>
+            </div>
+
+            <div>
+                <label>Depth</label>
+                <div class="range-input">
+                    <div class="value-display" id="depthValue">62</div>
+                    <input type="range" min="50" max="80" step="0.1" value="62" id="depthRange">
+                </div>
+            </div>
+
+            <div>
+                <label>Table</label>
+                <div class="range-input">
+                    <div class="value-display" id="tableValue">57</div>
+                    <input type="range" min="50" max="70" step="0.1" value="57" id="tableRange">
+                </div>
+            </div>
+
+            <div>
+                <label>Length (mm)</label>
+                <div class="range-input">
+                    <div class="value-display" id="xValue">6.5</div>
+                    <input type="range" min="3" max="12" step="0.01" value="6.5" id="xRange">
+                </div>
+            </div>
+
+            <div>
+                <label>Width (mm)</label>
+                <div class="range-input">
+                    <div class="value-display" id="yValue">6.5</div>
+                    <input type="range" min="3" max="12" step="0.01" value="6.5" id="yRange">
+                </div>
+            </div>
+
+            <div>
+                <label>Depth (mm)</label>
+                <div class="range-input">
+                    <div class="value-display" id="zValue">4</div>
+                    <input type="range" min="2" max="8" step="0.01" value="4" id="zRange">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn active" id="submitBtn">Submit</button>
+    </div>
+
+    <div class="calculator-output">
+        <h2>Calculator Output</h2>
+        <div class="price-card">
+            <h3>Fair Price Estimate</h3>
+            <div class="price">$4,773</div>
+            <p class="tag" id="diamondInfo">Round 1 Carat G VS2</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const sliders = [
+    { id: 'caratRange', valueId: 'caratValue' },
+    { id: 'depthRange', valueId: 'depthValue' },
+    { id: 'tableRange', valueId: 'tableValue' },
+    { id: 'xRange', valueId: 'xValue' },
+    { id: 'yRange', valueId: 'yValue' },
+    { id: 'zRange', valueId: 'zValue' },
+];
+
+sliders.forEach(s => {
+    const range = document.getElementById(s.id);
+    const display = document.getElementById(s.valueId);
+    range.addEventListener('input', () => {
+        display.textContent = range.value;
+    });
+});
+
+document.querySelectorAll('.btn-group').forEach(group => {
+    group.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            group.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+});
+
+    function updateDiamondInfo() {
+    const carat = document.querySelector('#caratRange')?.value || '1';
+    const groups = Array.from(document.querySelectorAll('.btn-group'));
+    const getActiveText = (groupIndex) => groups[groupIndex]?.querySelector('.btn.active')?.innerText;
+    const clarity = getActiveText(0) || 'VS2';
+    const cut = getActiveText(1) || 'Ideal';
+    const color = getActiveText(2) || 'G';
+
+    const info = `${cut} ${carat} Carat ${color} ${clarity}`;
+    document.getElementById('diamondInfo').textContent = info;
+}
+
+// When the slider changes
+document.querySelectorAll("input[type='range']").forEach(slider => {
+    slider.addEventListener("input", updateDiamondInfo);
+});
+
+// When the button changes
+document.querySelectorAll(".btn-group .btn").forEach(btn => {
+    btn.addEventListener("click", updateDiamondInfo);
+});
+
+// Print the initial values when the page loads
+window.addEventListener("DOMContentLoaded", updateDiamondInfo);
+
+</script>
+<script>
+// Submit handler to call backend and display prediction
+document.getElementById('submitBtn').addEventListener('click', async () => {
+    const groups = Array.from(document.querySelectorAll('.btn-group'));
+    const getActiveText = (groupIndex) => groups[groupIndex]?.querySelector('.btn.active')?.innerText;
+
+    const payload = {
+        carat: parseFloat(document.getElementById('caratRange').value),
+        cut: getActiveText(1) || 'Ideal',
+        color: getActiveText(2) || 'G',
+        clarity: getActiveText(0) || 'VS2',
+        depth: parseFloat(document.getElementById('depthRange').value),
+        table: parseFloat(document.getElementById('tableRange').value),
+        x: parseFloat(document.getElementById('xRange').value),
+        y: parseFloat(document.getElementById('yRange').value),
+        z: parseFloat(document.getElementById('zRange').value),
+    };
+
+    const priceEl = document.querySelector('.price');
+    const prevText = priceEl?.textContent;
+    if (priceEl) priceEl.textContent = 'Calculating…';
+
+    try {
+        const response = await fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) throw new Error('Prediction request failed');
+        const data = await response.json();
+        const predicted = Number(data.predicted_price) || 0;
+        const formatted = predicted.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+        if (priceEl) priceEl.textContent = formatted;
+    } catch (err) {
+        if (priceEl) priceEl.textContent = prevText || '—';
+        console.error(err);
+        alert('Unable to get prediction. Please try again.');
+    }
+});
+</script>
+</body>
+</html>

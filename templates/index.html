@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diamond Calculator Input</title>
+<title>Diamond Calculator Predict</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
@@ -29,13 +29,13 @@ body {
     background: white;
     border-radius: 0px;
     padding: 0 32px 32px 32px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     width: 1500px;
-    margin: 50px 0px 0px 0px;
+    margin: 50px 20px 20px 0px;
 }
 
 h2 {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 
@@ -87,7 +87,7 @@ label {
 
 .range-input {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 input[type="range"] {
@@ -112,13 +112,14 @@ input[type="range"]::-webkit-slider-thumb {
 .value-display {
     border: 1px solid white;
     border-radius: 8px;
-    padding: 9px;
+    padding: 8px;
     transition: 0.2s;
     font-size: 12px;
     text-align: center;
     margin: 4px auto;
     width: 42px;
     height: 11px;
+    line-height: 11px;
     background: #4f46e5;
     color: white;
 }
@@ -139,20 +140,19 @@ input[type="range"]::-webkit-slider-thumb {
     border: 1px solid #e5e7eb;
     border-top: none;
     border-left: none;
-    border-radius: 8px;
     padding: 3px 20px 20px 20px;
     width: 100%;
     max-width: 600px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     font-family: 'Inter', sans-serif;
-    margin: 2px auto;
+    margin: 0px 35px 35px 35px;
 }
 
 .calculator-output h2 {
     text-align: left;
     margin-bottom: 2px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 20px;
     color: #111;
 }
@@ -233,7 +233,7 @@ input[type="range"]::-webkit-slider-thumb {
         width: 100%;
         max-width: 100%;
         padding: 0 16px 24px 16px;
-        margin: 60px 0 0 0; /* leave space for fixed header */
+        margin: 50px 0 0 0;
     }
     .grid-container {
         grid-template-columns: 1fr;
@@ -330,7 +330,7 @@ input[type="range"]::-webkit-slider-thumb {
                 <label>Carat</label>
                 <div class="range-input">
                     <div class="value-display" id="caratValue">0.86</div>
-                    <input type="range" min="0.2" max="5" step="0.01" value="0.86" id="caratRange">
+                    <input type="range" min="0.2" max="5.01" step="0.01" value="0.86" id="caratRange">
                 </div>
             </div>
 
@@ -338,7 +338,7 @@ input[type="range"]::-webkit-slider-thumb {
                 <label>Depth</label>
                 <div class="range-input">
                     <div class="value-display" id="depthValue">62</div>
-                    <input type="range" min="50" max="80" step="0.1" value="62" id="depthRange">
+                    <input type="range" min="50" max="79" step="0.1" value="62" id="depthRange">
                 </div>
             </div>
 
@@ -346,7 +346,7 @@ input[type="range"]::-webkit-slider-thumb {
                 <label>Table</label>
                 <div class="range-input">
                     <div class="value-display" id="tableValue">57</div>
-                    <input type="range" min="50" max="70" step="0.1" value="57" id="tableRange">
+                    <input type="range" min="50" max="95" step="0.1" value="57" id="tableRange">
                 </div>
             </div>
 
@@ -354,7 +354,7 @@ input[type="range"]::-webkit-slider-thumb {
                 <label>Length (mm)</label>
                 <div class="range-input">
                     <div class="value-display" id="xValue">6.5</div>
-                    <input type="range" min="3" max="12" step="0.01" value="6.5" id="xRange">
+                    <input type="range" min="3" max="10.74" step="0.01" value="6.5" id="xRange">
                 </div>
             </div>
 
@@ -362,7 +362,7 @@ input[type="range"]::-webkit-slider-thumb {
                 <label>Width (mm)</label>
                 <div class="range-input">
                     <div class="value-display" id="yValue">6.5</div>
-                    <input type="range" min="3" max="12" step="0.01" value="6.5" id="yRange">
+                    <input type="range" min="3" max="58.90" step="0.01" value="6.5" id="yRange">
                 </div>
             </div>
 
@@ -370,7 +370,7 @@ input[type="range"]::-webkit-slider-thumb {
                 <label>Depth (mm)</label>
                 <div class="range-input">
                     <div class="value-display" id="zValue">4</div>
-                    <input type="range" min="2" max="8" step="0.01" value="4" id="zRange">
+                    <input type="range" min="2" max="31.80" step="0.01" value="4" id="zRange">
                 </div>
             </div>
         </div>
